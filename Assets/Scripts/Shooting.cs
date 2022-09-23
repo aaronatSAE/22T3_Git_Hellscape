@@ -6,11 +6,13 @@ public class Shooting : MonoBehaviour
 {
     public Transform gunTip;
     public GameObject bullet;
+    List<GameObject> bullets = new List<GameObject>();
 
     [Header("Bullet Attributes")]
     public float bulletSpeed;
 
-    // Update is called once per frame
+    float timer = 5f, originalTimer = 5f;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -19,6 +21,22 @@ public class Shooting : MonoBehaviour
             Rigidbody bulletRB = instantiatedBullet.GetComponent<Rigidbody>();
 
             bulletRB.AddForce(gunTip.forward * bulletSpeed, ForceMode.Impulse);
+
+            bullets.Add(instantiatedBullet);
+        }
+
+        if (bullets.Count > 0)
+        {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                Destroy(bullets[0]);
+
+                timer = originalTimer;
+            }
         }
     }
 }
