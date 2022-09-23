@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
         {
             health += 1;
             print("Health Increasing");
-        }*/
+        }
     }
     
 }

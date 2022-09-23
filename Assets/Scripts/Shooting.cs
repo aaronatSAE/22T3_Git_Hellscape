@@ -34,6 +34,7 @@ public class Shooting : MonoBehaviour
             else
             {
                 Destroy(bullets[0]);
+                bullets.RemoveAt(0);
 
                 timer = originalTimer;
             }
